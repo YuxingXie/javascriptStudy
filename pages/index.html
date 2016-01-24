@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="IndexApp">
+<head>
+    <meta charset="UTF-8">
+    <title>JavaScript高级程序设计(第三版)学习笔记</title>
+    <link rel="stylesheet" href="../plugins/bootstrap-3.3.0/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="../plugins/font-awesome-4.5.0/css/font-awesome.css">
+</head>
+<body ng-controller="IndexController">
+<div class="row" style="margin-top:20px;">
+    <div id="tree" class="col-lg-3 col-sm-3"></div>
+    <div  class="col-lg-9 col-sm-9 table-bordered" >
+        <iframe id="content" src="http://img10.360buyimg.com/n11/g10/M00/18/19/rBEQWFF3cHUIAAAAAAN3FKRK5BMAAE15QLjoWgAA3cs782.jpg"
+                style="width: 100%;height: 600px;padding-right: 10px;border: none"></iframe>
+
+    </div>
+</div>
+
+</body>
+<script src="../plugins/angular-1.4.8/angular.js"></script>
+<script src="../plugins/angular-1.4.8/angular-route.js"></script>
+<script src="../plugins/jquery-2.1.1.min.js"></script>
+<script src="../plugins/bootstrap-3.3.0/dist/js/bootstrap.js"></script>
+<script src="../plugins/bootstrap-treeview-master/dist/bootstrap-treeview.min.js"></script>
+<script>
+    angular.module("IndexApp",['ngRoute'])
+//    .config(['$routeProvider',function ($routeProvider) {
+//        $routeProvider
+//            .when('/312', {
+//                templateUrl: '../pages/3/2/content.html'
+////                ,controller: 'RouteListCtl'
+//            })
+//            .when('/list/:id', {
+//                templateUrl: 'views/route/detail.html',
+//                controller: 'RouteDetailCtl'
+//            })
+//            .otherwise({
+//                redirectTo: '/list'
+//            });
+//    }])
+    .controller("IndexController", ["$http", function ($http) {
+        $http.get("../data/index-menu.json").success(function (data) {
+            $('#tree').treeview(
+                {
+                    data: data,
+                    showTags: true,
+                    expandIcon: 'fa fa-folder',
+                    collapseIcon: 'fa fa-folder-open',
+                    enableLinks: false,
+                    showTags: true
+                    ,onNodeSelected: function (info, node) {
+                        $("#content").attr("src",node.url);
+                    }
+                });
+        });
+    }])
+
+</script>
+</html>

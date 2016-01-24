@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <pre>
+    3.4 数据类型
+
+        Undefined
+        Null
+        Boolean
+        Number
+        String
+        Object
+
+        需要先重点理解Undefined和Null
+
+
+        3.4.1 typeof操作符
+
+        鉴于 ECMAScript 是松散类型的，因此需要有一种手段来检测给定变量的数据类型——typeof 就是负责提供这方面信息的操作符。
+
+        typeof操作符返回字符串，与数据类型并不完全对应。
+        "undefined"——Undefined；
+        "boolean"——Boolean；
+        "string"——String；
+        "number"——Number；
+        "object"——Object或 null；
+        "function"——函数。
+
+        Safari 5 及之前版本、 Chrome 7 及之前版本在对正则表达式调用 typeof 操作符时会返回"function"，而其他浏览器在这种情况下会返回"object"。
+
+        函数与对象到底区别在哪？
+
+
+        3.4.2 Undefined类型
+
+        Undefined 类型只有一个值，即特殊的 undefined。
+
+        如下代码体现undefined和未定义的变量的区别：
+
+        var message; // 这个变量声明之后默认取得了 undefined 值
+        // 下面这个变量并没有声明
+        // var age
+        alert(message); // "undefined"
+        alert(age); // 产生错误
+    </pre>
+</body>
+</html>
