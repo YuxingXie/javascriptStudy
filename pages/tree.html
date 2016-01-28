@@ -1,58 +1,45 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="IndexApp">
+<html lang="en" ng-app="treeApp">
 <head>
     <meta charset="UTF-8">
     <title>JavaScript高级程序设计(第三版)学习笔记</title>
     <link rel="stylesheet" href="../plugins/bootstrap-3.3.0/dist/css/bootstrap.css">
     <link rel="stylesheet" href="../plugins/font-awesome-4.5.0/css/font-awesome.css">
-    <link rel="stylesheet" href="../plugins/bootstrap-treeview-master/public/css/bootstrap-treeview.css">
+    <link rel="stylesheet" href="../plugins/angular-ui-tree-master/source/angular-ui-tree.css">
+    <link rel="stylesheet" href="../plugins/angular-ui-tree-master/examples/css/app.css">
 
-    <style>
-        .padding-left-10{padding-left: 10px;}
-    </style>
 </head>
-<body ng-controller="IndexController">
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-md-3" id="treeview">
+<body ng-controller="TreeCtrl" class="container">
+{{nodes}}
+<hr/>
+<div class="row" nodes="{{nodes}}">
 
-        </div>
-
-    </div>
 </div>
-</body>
 <script src="../plugins/angular-1.4.8/angular.js"></script>
 <script src="../plugins/angular-1.4.8/angular-route.js"></script>
 <script src="../plugins/jquery-2.1.1.min.js"></script>
 <script src="../plugins/bootstrap-3.3.0/dist/js/bootstrap.js"></script>
 
 <script>
-    angular.module("IndexApp",['ngRoute'])
-//    .config(['$routeProvider',function ($routeProvider) {
-//        $routeProvider
-//            .when('/312', {
-//                templateUrl: '../pages/3/2/content.html'
-////                ,controller: 'RouteListCtl'
-//            })
-//            .when('/list/:id', {
-//                templateUrl: 'views/route/detail.html',
-//                controller: 'RouteDetailCtl'
-//            })
-//            .otherwise({
-//                redirectTo: '/list'
-//            });
-//    }])
-        .controller("IndexController", ["$http", function ($http) {
-            $http.get("../data/index-menu.json").success(function (data) {
-                var options = {
-                    bootstrap2: false,
-                    showTags: true,
-                    levels: 5,
-                    data: data
-                };
-                $('#treeview').treeview(options);
-            });
-        }])
+    angular.module("treeApp",['ngRoute'])
+    .controller("TreeCtrl", ["$http","$scope", function ($http,$scope) {
+        $http.get("../data/index-menu.json").success(function (data) {
+            $scope.nodes=data;
+        });
+    }])
+    .directive("nodes",function(){
+        return{
+            restrict:'A',
+            scope:{nodes:'@'},
+            template:
+            "<div class='row' ng-repeat='node in nodes track by $index'>" +
+            "<i class='fa' ng-class='{\"fa-folder\":node.nodes}'>{{node.text}}</i>" +
+            "<div class='row'ng-if='node.nodes' nodes='node.nodes'></div>" +
+            "</div>"
+        };
+    });
 
 </script>
+</body>
+
 </html>
