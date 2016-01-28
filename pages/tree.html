@@ -33,9 +33,9 @@
             scope:{nodes:'@'},
             transclude:true,
             template:
-            "<div class='row' ng-repeat='node in nodes'>" +
-                "<i class='fa' ng-class='{\"fa-folder\":node.nodes,\"fa-file-text\":!node.nodes}'>{{node.text}}</i>" +
-                "<div class='row' ng-if='node.nodes' tree-node nodes='{{node.nodes}}'></div>" +
+            "<div class='row' ng-repeat='node in nodes track by $index'>" +
+                "<i class='fa' ng-class='{\"fa-folder\":node.nodes,\"fa-file-text\":!node.nodes}'>{{$index}}{{node.text}}</i>" +
+//                "<div class='row' ng-if='node.nodes' tree-node nodes='{{node.nodes}}'></div>" +
             "</div>"
         };
     });
