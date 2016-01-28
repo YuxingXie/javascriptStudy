@@ -2,7 +2,7 @@
 <html>
   <head>
     <title>Bootstrap Tree View</title>
-    <link href="./bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+    <link href="./../../bootstrap-3.3.0/dist/css/bootstrap.css" rel="stylesheet">
     <link href="./css/bootstrap-treeview.css" rel="stylesheet">
   </head>
   <body>
@@ -16,7 +16,7 @@
         </div>
       </div>
     </div>
-    <script src="./bower_components/jquery/dist/jquery.js"></script>
+    <script src="./../../jquery-2.1.1.js"></script>
   	<script src="./js/bootstrap-treeview.js"></script>
   	<script type="text/javascript">
 
@@ -41,6 +41,7 @@
         }
 
         walk($('html')[0].children, data);
+        console.log(JSON.stringify(data));
         return data;
       }
 

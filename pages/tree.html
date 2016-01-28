@@ -5,35 +5,27 @@
     <title>JavaScript高级程序设计(第三版)学习笔记</title>
     <link rel="stylesheet" href="../plugins/bootstrap-3.3.0/dist/css/bootstrap.css">
     <link rel="stylesheet" href="../plugins/font-awesome-4.5.0/css/font-awesome.css">
+    <link rel="stylesheet" href="../plugins/bootstrap-treeview-master/public/css/bootstrap-treeview.css">
+
+    <style>
+        .padding-left-10{padding-left: 10px;}
+    </style>
 </head>
 <body ng-controller="IndexController">
-<div class="row" style="margin-top:20px;">
-    <div class="col-lg-3 col-sm-3"></div>
-    <div class="col-lg-9 col-sm-9" >
-       <ul class="list-group">
-            <li class="list-group-item">aaa
-                <ul class="list-group">
-                    <li class="list-group-item">aaa1</li>
-                    <li class="list-group-item">aaa2</li>
-                    <li class="list-group-item ">aaa3
-                        <ul class="list-group">
-                            <li class="list-group-item bg-success">aaa31</li>
-                            <li class="list-group-item">aaa32</li>
-                        </ul>
-                    </li>
-                </ul>
-            </li>
-       </ul>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-3" id="treeview">
+
+        </div>
 
     </div>
 </div>
-
 </body>
 <script src="../plugins/angular-1.4.8/angular.js"></script>
 <script src="../plugins/angular-1.4.8/angular-route.js"></script>
 <script src="../plugins/jquery-2.1.1.min.js"></script>
 <script src="../plugins/bootstrap-3.3.0/dist/js/bootstrap.js"></script>
-<script src="../plugins/bootstrap-treeview-master/dist/bootstrap-treeview.min.js"></script>
+
 <script>
     angular.module("IndexApp",['ngRoute'])
 //    .config(['$routeProvider',function ($routeProvider) {
@@ -52,7 +44,13 @@
 //    }])
         .controller("IndexController", ["$http", function ($http) {
             $http.get("../data/index-menu.json").success(function (data) {
-
+                var options = {
+                    bootstrap2: false,
+                    showTags: true,
+                    levels: 5,
+                    data: data
+                };
+                $('#treeview').treeview(options);
             });
         }])
 
