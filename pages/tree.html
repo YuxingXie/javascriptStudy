@@ -10,9 +10,8 @@
 
 </head>
 <body ng-controller="TreeCtrl" class="container">
-{{nodes}}
-<hr/>
-<div class="row" tree-node nodes="{{nodes}}">
+
+<div class="row" tree-node nodes-data="nodes">
 
 </div>
 <script src="../plugins/angular-1.4.8/angular.js"></script>
@@ -30,12 +29,13 @@
     .directive("treeNode",function(){
         return{
             restrict:'A',
-            scope:{nodes:'@'},
-            transclude:true,
+            scope:{nodesData:'='},
+//            transclude:true,
             template:
-            "<div class='row' ng-repeat='node in nodes track by $index'>" +
-                "<i class='fa' ng-class='{\"fa-folder\":node.nodes,\"fa-file-text\":!node.nodes}'>{{$index}}{{node.text}}</i>" +
-//                "<div class='row' ng-if='node.nodes' tree-node nodes='{{node.nodes}}'></div>" +
+            "<div class='row' ng-repeat='node in nodesData'>" +
+                "<i class='fa' ng-class='{\"fa-folder\":node.nodes,\"fa-file-text\":!node.nodes}'></i>{{node.text}}" +
+                "<i class='fa fa-bell'></i>{{node.nodes}}" +
+//                "<div class='row' ng-if='node.nodes' tree-node nodes-data='node.nodes'></div>" +
             "</div>"
         };
     });
