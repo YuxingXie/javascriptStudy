@@ -31,11 +31,12 @@
             restrict:'A',
             scope:{nodesData:'='},
 //            transclude:true,
+            required:"treeNode",
             template:
             "<div class='row' ng-repeat='node in nodesData'>" +
                 "<i class='fa' ng-class='{\"fa-folder\":node.nodes,\"fa-file-text\":!node.nodes}'></i>{{node.text}}" +
                 "<i class='fa fa-bell'></i>{{node.nodes}}" +
-//                "<div class='row' ng-if='node.nodes' tree-node nodes-data='node.nodes'></div>" +
+                "<div class='row' ng-if='node.nodes' tree-node nodes-data='node.nodes'></div>" +
             "</div>"
         };
     });
